@@ -1,0 +1,22 @@
+# Number of participants
+
+ ? F - ? M
+ Average age  - F / M
+ Median age   - F / M
+
+# Distribution of ages
+
+
+# Number of countries
+ Distribution of countries
+
+
+# The race
+
+Number of disqualification
+
+Mean speed over all participants  (M - F)
+
+
+
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in {0..48100..100}; do
+	req="https://resultscui.active.com/api/results/events/SchneiderElectricMarathondeParis2019/participants?groupId=827251&routeId=155876&offset=$i&limit=100"
+	sleep 0.2
+	curl $req -H 'Cookie: OptanonAlertBoxClosed=2019-04-11T14:41:24.861Z; BIGipServer~activeworks~aw_prod_resultscui_pool=!Z6TIj2YqfwfLe28IIVBlD9R7RbMlqQQEE4x1pgQMZ0SyWiAdx/mMpEYV2DuV3A5D8ZbN2bcCm/5uqw==; TS0168f5b2=01572f3dbedeec480fcfb2e367d2bf27f77df85b14c551a29fd1cf0765fddb516c271af1b176ca91d72b999afbafae388b53caac38b39c648c214e3444d310071d9dc6ba3b; OptanonConsent=landingPath=NotLandingPage&datestamp=Tue+Apr+16+2019+10%3A39%3A03+GMT%2B0200+(Central+European+Summer+Time)&version=4.6.0&EU=true&groups=1%3A1%2C0_126569%3A1%2C105%3A1%2C2%3A1%2C104%3A1%2C3%3A1%2C0_126572%3A1%2C106%3A1%2C0_126571%3A1%2C4%3A1%2C0_126577%3A1%2C0_126579%3A1%2C0_126576%3A1%2C0_126575%3A1%2C0_126578%3A1%2C0_176497%3A1%2C0_127061%3A1%2C0_165538%3A1%2C0_176495%3A1%2C0_165640%3A1%2C0_165534%3A1%2C0_176493%3A1%2C0_175182%3A1%2C0_176463%3A1%2C0_176498%3A1%2C0_177396%3A1%2C0_165537%3A1%2C0_165542%3A1%2C0_165358%3A1%2C0_176499%3A1%2C0_126598%3A1&AwaitingReconsent=false' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,fr;q=0.8' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36' -H 'accept: application/vnd.active.results-service.v1+json' -H 'Referer: https://resultscui.active.com/events/SchneiderElectricMarathondeParis2019' -H 'X-Requested-With: XMLHttpRequest' -H 'Connection: keep-alive"' --compressed >> marathon_data.json
+
+done
