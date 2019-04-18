@@ -4,6 +4,7 @@ import json
 import numpy as np
 import pandas as pd
 import re
+import matplotlib.pyplot as plt
 
 def parseRawJson():
     # Create a dataframe to hold the data
@@ -49,11 +50,24 @@ if __name__ == '__main__':
     nbr_participants = len(df)
     nbr_participants_M = len(df[df.gender =='M'])
     nbr_participants_F = len(df[df.gender =='F'])
-    M_to_F_ratio = nbr_participants_M / nbr_participants_F
+    F_percent =  nbr_participants_F / (nbr_participants_M+nbr_participants_F)
+    M_percent =  1 - F_percent
 
     avg_age = df.age.mean()
     avg_age_M = df[df.gender == 'M'].age.mean()
     avg_age_F = df[df.gender == 'F'].age.mean()
+
+    # Data to plot
+    labels = 'Male', 'Female'
+    sizes = [M_percent, F_percent]
+    # colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+    # explode = (0.1, 0, 0, 0)  # explode 1st slice
+     
+    # Plot
+    plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+     
+    plt.axis('equal')
+    plt.show()
 
     # print(nbr_participants_M)
     # print(nbr_participants_F)
