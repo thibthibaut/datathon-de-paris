@@ -9,7 +9,22 @@ import matplotlib.pyplot as plt
 
 plt.rcParams["font.family"] = "serif"
 
+def plotFinishTime(df):
+    bins = np.linspace(2*60*60, 7*60*60, num=200, dtype=int )
+    arrival_times = pd.to_numeric(df.finishTime)
+    sns.distplot(arrival_times, bins=bins, hist=True, kde=False, axlabel='Finish time in seconds, slices of 90 seconds', color='r').set_title('Distribution of arrival time')
 
+def plotAgeHistogram(df):
+    ages = pd.to_numeric(df.age)
+    ages_F = pd.to_numeric(df[df.gender == 'F'].age)
+    ages_M = pd.to_numeric(df[df.gender == 'M'].age)
+
+    bins = np.linspace(17, 90, num=90-17, dtype=int)
+    fig, ax = plt.subplots()
+
+    sns.distplot(ages_F, bins=bins, norm_hist=False, kde=False, color='g', label='Female',  ax=ax).set_title('Repartition of ages')
+    sns.distplot(ages_M, bins=bins, norm_hist=False, kde=False, label='Male', ax=ax)
+    ax.legend()
 
 def plotMeanSpeedPerAge(df):
     # MEAN SPEED PER AGE
@@ -96,6 +111,7 @@ if __name__ == '__main__':
     avg_age_M = df[df.gender == 'M'].age.mean()
     avg_age_F = df[df.gender == 'F'].age.mean()
 
+    ages = pd.to_numeric(df.age)
     # Data to plot
     # labels = 'Male', 'Female'
     # sizes = [M_percent, F_percent]
@@ -106,32 +122,27 @@ if __name__ == '__main__':
 
     # print(df.finishTime.values.dtype)
     
-    bins = np.linspace(2*60*60, 7*60*60, num=200, dtype=int )
-    ages = pd.to_numeric(df.age)
-    ages_F = pd.to_numeric(df[df.gender == 'F'].age)
-    ages_M = pd.to_numeric(df[df.gender == 'M'].age)
 
     arrival_times = pd.to_numeric(df.finishTime)
 
-    # sns.distplot(arrival_times, bins=bins, hist=True, kde=False, axlabel='Finish time in seconds, slices of 90 seconds', color='r').set_title('Distribution of arrival time')
-
     # sns.jointplot(x=ages, y=arrival_times, xlim=(15, 90), kind='scatter')
 
-    # AGE HISTO
-    # bins = np.linspace(17, 90, num=90-17+2, dtype=int )
-    # fig, ax = plt.subplots()
-    # sns.distplot(ages_F, bins=bins, norm_hist=False, kde=False, color='g',  ax=ax)
-    # sns.distplot(ages_M, bins=bins, norm_hist=False, kde=False, ax=ax)
 
 
-    plotMeanSpeedPerAge(df)
+    # plotFinishTime(df)
+    plotAgeHistogram(df)
+    # plotMeanSpeedPerAge(df)
+
+
     # print(nbr_participants_M)
     # print(nbr_participants_F)
     # print(M_to_F_ratio)
     # print(avg_age)
     # print(avg_age_M)
     # print(avg_age_F)
-    # plt.hist(df.finishTime)
 
     # print(df.avgSpeed.describe())
+
+
+    # print(df[df.age == 5])
     plt.show()
